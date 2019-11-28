@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -14,7 +14,4 @@ def api_example(request, *args, **kwargs):
         'time': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
         'content': request_data
     }
-    data_json = json.dumps(data)
-    response = HttpResponse(data_json)
-    response['Content-Type'] = 'application/json'
-    return response
+    return JsonResponse(data)
